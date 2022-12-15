@@ -1,26 +1,33 @@
 import React, { useContext, useEffect } from 'react'
 import { JerarquiaContext } from '../context/jerarquiaContext'
-import { Desarrollador } from './Desarrollador'
-import { GerenteB } from './GerenteB'
-import { ProbadorCalidad } from './ProbadorCalidad'
 
-export const Gerente = () => {
+export const Gerente = (props) => {
 
-    const { jerarquiaValue, SetJerarquia } = useContext(JerarquiaContext);
-
+    const { gerenteA, data } = useContext(JerarquiaContext);
+    const { desarrollador, calidad, gerenteB } = props;
     useEffect(() => {
-        SetJerarquia({
-            ...jerarquiaValue,
-            gerenteA: 300
-        })
-    }, [])
+        gerenteA(300)
+    }, []);
+
     return (
         <>
-            <div>Gerente $ {jerarquiaValue.gerenteA}</div>
-
-            <ProbadorCalidad />
-            <Desarrollador />
-            <GerenteB />
+            <div>Gerente $ {data ? data.gerenteA : 0}</div>
+            {
+                desarrollador
+            }
+            {
+                calidad
+            }
+            {
+                gerenteB
+            }
+            {/* {
+                componente.map( (value, index) => (
+                    <div key={index} >
+                        { value }
+                    </div>
+                ))
+            } */}
             
             
         </>

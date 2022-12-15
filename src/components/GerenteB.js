@@ -2,16 +2,13 @@ import React, { useContext, useEffect } from 'react'
 import { JerarquiaContext } from '../context/jerarquiaContext';
 
 export const GerenteB = () => {
-    const { jerarquiaValue, SetJerarquia } = useContext(JerarquiaContext);
+    const { data, gerenteB } = useContext(JerarquiaContext);
 
     useEffect(() => {
-        SetJerarquia({
-            ...jerarquiaValue,
-            gerenteB: 300
-        })
+        gerenteB(300)
     }, [])
 
     return (
-        <div>Gerente B $ {jerarquiaValue.gerenteB}</div>
+        <div>Gerente B $ {data ? data.gerenteB : 0}</div>
     )
 }

@@ -1,5 +1,7 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { Desarrollador } from '../components/Desarrollador'
 import { Gerente } from '../components/Gerente'
+import { GerenteB } from '../components/GerenteB'
 import { ProbadorCalidad } from '../components/ProbadorCalidad'
 import { JerarquiaContext } from '../context/jerarquiaContext'
 
@@ -7,19 +9,31 @@ import '../theme/Usuario.css'
 
 export const Usuario = () => {
 
-    const { jerarquiaValue } = useContext(JerarquiaContext);
+    const { data } = useContext(JerarquiaContext);
+
+    const [componentes, setComponentes] = useState(<></>)
     let total = 0;
 
-    for (let key in jerarquiaValue) {
-        total += jerarquiaValue[key];
+    for (let key in data) {
+        total += data[key];
     }
 
-    console.log(total);
+    useEffect(() => {
+        setComponentes(<>
+            <Gerente 
+                desarrollador={<Desarrollador />}
+                calidad={<ProbadorCalidad />}
+                gerenteB={<GerenteB />}
+            />
+        </>)
+    }, [])
+    
 
     return (
         <div className='jerarquiaUsuario'>
-            <Gerente />
-
+            {
+                componentes
+            }
             <p>
                 Total $ {total}
             </p>

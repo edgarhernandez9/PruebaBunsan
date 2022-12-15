@@ -3,16 +3,13 @@ import { JerarquiaContext } from '../context/jerarquiaContext';
 
 export const Desarrollador = () => {
 
-    const { jerarquiaValue, SetJerarquia } = useContext(JerarquiaContext);
+    const { desarrollador,data } = useContext(JerarquiaContext);
 
     useEffect(() => {
-        SetJerarquia({
-            ...jerarquiaValue,
-            desarrollador: 1000
-        })
+        desarrollador(1000)
     }, [])
 
     return (
-        <div>Desarrollador $ {jerarquiaValue.desarrollador}</div>
+        <div>Desarrollador $ {data ? data.desarrollador : 0}</div>
     )
 }

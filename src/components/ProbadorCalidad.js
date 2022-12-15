@@ -2,16 +2,13 @@ import React, { useContext, useEffect } from 'react'
 import { JerarquiaContext } from '../context/jerarquiaContext';
 
 export const ProbadorCalidad = () => {
-    const { jerarquiaValue, SetJerarquia } = useContext(JerarquiaContext);
+    const { data, qa } = useContext(JerarquiaContext);
 
     useEffect(() => {
-        SetJerarquia({
-            ...jerarquiaValue,
-            calidad: 500
-        })
+        qa(500)
     }, [])
 
     return (
-        <div>ProbadorCalidad $ {jerarquiaValue.calidad}</div>
+        <div>ProbadorCalidad $ {data ? data.calidad : 0}</div>
     )
 }
